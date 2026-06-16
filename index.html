@@ -2,1469 +2,521 @@
 <html lang="id">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
-<title>Random Kata</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#d32f2f">
-<style>
-
-*{
-
-box-sizing:border-box;
-
-font-family:Arial,sans-serif;
-
-}
-
-body{
-
-margin:0;
-
-padding:15px;
-
-background:#ffffff;
-
-color:#222;
-
-}
-
-h1,h2{
-
-text-align:center;
-
-}
-
-.card{
-
-background:#f5f5f5;
-
-border:1px solid #ddd;
-
-border-radius:12px;
-
-padding:12px;
-
-margin-bottom:12px;
-
-}
-
-input{
-
-width:100%;
-
-padding:12px;
-
-margin-bottom:10px;
-
-border:1px solid #ccc;
-
-border-radius:8px;
-
-font-size:16px;
-
-}
-
-button{
-
-background:#d32f2f;
-
-color:white;
-
-border:none;
-
-padding:10px 14px;
-
-border-radius:8px;
-
-cursor:pointer;
-
-margin:3px;
-
-}
-
-.hidden{
-
-display:none;
-
-}
-
-.row{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-gap:10px;
-
-padding:10px;
-
-border-bottom:1px solid #ddd;
-
-}
-
-.kata{
-
-font-weight:bold;
-
-font-size:18px;
-
-}
-
-.small{
-
-font-size:12px;
-
-color:#666;
-
-}
-
-.center{
-
-text-align:center;
-
-}
-
-#hasil{
-
-margin-top:20px;
-
-padding:15px;
-
-background:#f5f5f5;
-
-border-radius:12px;
-
-text-align:center;
-
-font-size:22px;
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Random Kata - Edisi Menu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0; /* Padding diatur oleh container */
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* --- STYLE MENU BARU --- */
+        .navbar {
+            background-color: #d32f2f;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-menu button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-menu button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- STYLE LAMA --- */
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .card {
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #d32f2f;
+        }
+
+        button.action-btn {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        button.action-btn:hover {
+            background: #b71c1c;
+        }
+
+        button.secondary-btn {
+            background: #757575;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .kata {
+            font-weight: bold;
+            font-size: 18px;
+            color: #d32f2f;
+        }
+
+        .small {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 20px;
+            border: 1px solid #bbdefb;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Animasi untuk hasil */
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
 </head>
 
 <body>
 
-
-
-<div id="home">
-
-<h1>
-
-Random Kata
-
-</h1>
-
-
-
-<div class="card">
-
-<input
-
-id="inputBab"
-
-placeholder="Nama Bab"
-
->
-
-
-
-<button
-
-onclick="tambahBab()"
-
->
-
-Tambah Bab
-
-</button>
-
-
-
-</div>
-
-
-
-<div id="listBab">
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div
-
-id="halamanBab"
-
-class="hidden"
-
->
-
-
-
-<button
-
-onclick="kembali()"
-
->
-
-Kembali
-
-</button>
-
-
-
-<h2
-
-id="judulBab"
-
->
-
-</h2>
-
-
-
-
-
-<div class="card">
-
-
-
-<input
-
-id="inputKata"
-
-placeholder="Kosakata"
-
->
-
-
-
-<input
-
-id="inputArti"
-
-placeholder="Arti Indonesia"
-
->
-
-
-
-<button
-
-onclick="tambahKata()"
-
->
-
-Tambah Kata
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-<div
-
-id="editForm"
-
-class="card hidden"
-
->
-
-
-
-<h3>
-
-Edit Kosakata
-
-</h3>
-
-
-
-<input
-
-id="editKata"
-
-placeholder="Kosakata"
-
->
-
-
-
-<input
-
-id="editArti"
-
-placeholder="Arti"
-
->
-
-
-
-<button
-
-onclick="simpanEdit()"
-
->
-
-Simpan Edit
-
-</button>
-
-
-
-<button
-
-onclick="batalEdit()"
-
->
-
-Batal
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-
-<input
-
-id="cariKata"
-
-placeholder="Cari kosakata..."
-
-onkeyup="tampilkanKata()"
-
->
-
-
-
-</div>
-
-
-
-
-
-<div class="card">
-
-
-
-<div class="row">
-
-<b>
-
-Kosakata
-
-</b>
-
-<b>
-
-Arti
-
-</b>
-
-</div>
-
-
-
-<div
-
-id="listKata"
-
->
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div class="center">
-
-<button
-
-onclick="acakKata()"
-
->
-
-Acak Kata
-
-</button>
-
-</div>
-
-
-
-<div id="hasil">
-
-</div>
-
-
-
-</div>
-
-
-
-<script>
-
-let data=
-
-JSON.parse(
-
-localStorage.getItem(
-
-"randomKata"
-
-)
-
-)||{};
-
-
-
-let babAktif="";
-
-let editIndex=-1;
-
-let timer=null;
-
-let sudahKeluar=[];
-
-
-
-function simpan(){
-
-localStorage.setItem(
-
-"randomKata",
-
-JSON.stringify(data)
-
-);
-
-}function tampilkanBab(){
-
-let html="";
-
-for(let bab in data){
-
-html+=`
-
-<div class="card">
-
-<b>
-
-${bab}
-
-</b>
-
-<br>
-
-<span class="small">
-
-Jumlah kata :
-
-${data[bab].length}
-
-</span>
-
-<br><br>
-
-<button
-
-onclick="bukaBab('${bab}')"
-
->
-
-Buka
-
-</button>
-
-<button
-
-onclick="hapusBab('${bab}')"
-
->
-
-Hapus
-
-</button>
-
-</div>
-
-`;
-
-}
-
-document
-
-.getElementById("listBab")
-
-.innerHTML=html;
-
-}
-
-
-
-function tambahBab(){
-
-let nama=
-
-document
-
-.getElementById("inputBab")
-
-.value
-
-.trim();
-
-
-
-if(!nama)
-
-return;
-
-
-
-if(data[nama]){
-
-alert(
-
-"Bab sudah ada"
-
-);
-
-return;
-
-}
-
-
-
-data[nama]=[];
-
-
-
-simpan();
-
-tampilkanBab();
-
-
-
-document
-
-.getElementById("inputBab")
-
-.value="";
-
-}
-
-
-
-function hapusBab(nama){
-
-if(
-
-confirm(
-
-"Hapus bab ini?"
-
-)
-
-){
-
-delete data[nama];
-
-
-
-simpan();
-
-tampilkanBab();
-
-}
-
-}
-
-
-
-function bukaBab(nama){
-
-babAktif=nama;
-
-sudahKeluar=[];
-
-
-
-document
-
-.getElementById("home")
-
-.classList
-
-.add("hidden");
-
-
-
-document
-
-.getElementById("halamanBab")
-
-.classList
-
-.remove("hidden");
-
-
-
-document
-
-.getElementById("judulBab")
-
-.innerText=nama;
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML="";
-
-
-
-tampilkanKata();
-
-
-
-document
-
-.getElementById("inputKata")
-
-.focus();
-
-}
-
-
-
-function kembali(){
-
-document
-
-.getElementById("halamanBab")
-
-.classList
-
-.add("hidden");
-
-
-
-document
-
-.getElementById("home")
-
-.classList
-
-.remove("hidden");
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML="";
-
-}
-
-
-
-function tambahKata(){
-
-let kata=
-
-document
-
-.getElementById("inputKata")
-
-.value
-
-.trim();
-
-
-
-let arti=
-
-document
-
-.getElementById("inputArti")
-
-.value
-
-.trim();
-
-
-
-if(
-
-!kata ||
-
-!arti
-
-)
-
-return;
-
-
-
-if(
-
-data[babAktif]
-
-.some(
-
-item=>
-
-item.kata
-
-.toLowerCase()
-
-===
-
-kata
-
-.toLowerCase()
-
-)
-
-){
-
-alert(
-
-"Kata sudah ada"
-
-);
-
-return;
-
-}
-
-
-
-data[babAktif]
-
-.push({
-
-kata:kata,
-
-arti:arti
-
-});
-
-
-
-simpan();
-
-tampilkanKata();
-
-
-
-document
-
-.getElementById("inputKata")
-
-.value="";
-
-
-
-document
-
-.getElementById("inputArti")
-
-.value="";
-
-
-
-document
-
-.getElementById("inputKata")
-
-.focus();
-
-}function tampilkanKata(){
-
-let cari=
-
-document
-
-.getElementById("cariKata")
-
-.value
-
-.toLowerCase();
-
-
-
-let html="";
-
-
-
-data[babAktif]
-
-.forEach((item,index)=>{
-
-
-
-if(
-
-item.kata
-
-.toLowerCase()
-
-.includes(cari)
-
-||
-
-item.arti
-
-.toLowerCase()
-
-.includes(cari)
-
-){
-
-
-
-html+=`
-
-<div class="row">
-
-<div>
-
-<div class="kata">
-
-${item.kata}
-
-</div>
-
-<div>
-
-${item.arti}
-
-</div>
-
-</div>
-
-
-
-<div>
-
-<button
-
-onclick="editKata(${index})"
-
->
-
-Edit
-
-</button>
-
-
-
-<button
-
-onclick="hapusKata(${index})"
-
->
-
-Hapus
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-
-
-}
-
-
-
-});
-
-
-
-document
-
-.getElementById("listKata")
-
-.innerHTML=html;
-
-}
-
-
-
-function editKata(index){
-
-editIndex=index;
-
-
-
-document
-
-.getElementById("editForm")
-
-.classList
-
-.remove("hidden");
-
-
-
-document
-
-.getElementById("editKata")
-
-.value=
-
-data[babAktif]
-
-[index]
-
-.kata;
-
-
-
-document
-
-.getElementById("editArti")
-
-.value=
-
-data[babAktif]
-
-[index]
-
-.arti;
-
-}
-
-
-
-function simpanEdit(){
-
-
-
-let kata=
-
-document
-
-.getElementById("editKata")
-
-.value
-
-.trim();
-
-
-
-let arti=
-
-document
-
-.getElementById("editArti")
-
-.value
-
-.trim();
-
-
-
-if(
-
-!kata||
-
-!arti
-
-){
-
-alert(
-
-"Isi semua"
-
-);
-
-return;
-
-}
-
-
-
-data[babAktif]
-
-[editIndex]
-
-={
-
-kata:kata,
-
-arti:arti
-
-};
-
-
-
-simpan();
-
-
-
-tampilkanKata();
-
-
-
-batalEdit();
-
-}
-
-
-
-function batalEdit(){
-
-
-
-editIndex=-1;
-
-
-
-document
-
-.getElementById("editForm")
-
-.classList
-
-.add("hidden");
-
-
-
-}
-
-
-
-function hapusKata(index){
-
-
-
-if(
-
-confirm(
-
-"Hapus kata ini?"
-
-)
-
-){
-
-
-
-data[babAktif]
-
-.splice(index,1);
-
-
-
-simpan();
-
-
-
-tampilkanKata();
-
-
-
-}
-
-
-
-}
-
-
-
-function acakKata(){
-
-
-
-if(
-
-data[babAktif]
-
-.length===0
-
-){
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML=
-
-
-
-"Belum ada kosakata";
-
-
-
-return;
-
-
-
-}
-
-
-
-if(
-
-
-
-sudahKeluar
-
-.length
-
-
-
-===
-
-
-
-data[babAktif]
-
-.length
-
-
-
-){
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML=`
-
-6
-
-<b>
-
-Semua kata sudah keluar
-
-</b>
-
-
-
-<br><br>
-
-
-
-<button
-
-onclick="mulaiLagi()"
-
->
-
-Mulai Lagi
-
-</button>
-
-`;
-
-
-
-return;
-
-
-
-}
-
-
-
-if(timer){
-
-clearInterval(timer);
-
-}
-
-
-
-let index;
-
-
-
-do{
-
-
-
-index=
-
-
-
-Math.floor(
-
-
-
-Math.random()
-
-
-
-*
-
-
-
-data[babAktif]
-
-.length
-
-
-
-);
-
-
-
-}
-
-
-
-while(
-
-
-
-sudahKeluar
-
-.includes(index)
-
-
-
-);
-
-
-
-sudahKeluar
-
-.push(index);
-
-
-
-let item=
-
-
-
-data[babAktif]
-
-[index];
-
-
-
-let hitung=3;
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML=`
-
-
-
-<b style="font-size:32px">
-
-${item.kata}
-
-</b>
-
-
-
-<br><br>
-
-
-
-arti muncul dalam
-
-
-
-<br><br>
-
-
-
-<span
-
-id="countdown"
-
-style="font-size:42px"
-
->
-
-3
-
-</span>
-
-
-
-`;
-
-
-
-timer=
-
-
-
-setInterval(()=>{
-
-
-
-hitung--;
-
-
-
-if(
-
-hitung>0
-
-){
-
-
-
-document
-
-.getElementById(
-
-"countdown"
-
-)
-
-.innerText
-
-=
-
-hitung;
-
-
-
-}else{
-
-
-
-clearInterval(
-
-timer
-
-);
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML=`
-
-
-
-<b style="font-size:32px">
-
-${item.kata}
-
-</b>
-
-
-
-<br><br>
-
-
-
-${item.arti}
-
-
-
-`;
-
-
-
-}
-
-
-
-},1000);
-
-
-
-}
-
-
-
-function mulaiLagi(){
-
-
-
-sudahKeluar=[];
-
-
-
-document
-
-.getElementById("hasil")
-
-.innerHTML="";
-
-
-
-acakKata();
-
-
-
-}
-
-
-
-tampilkanBab();
-
-
-
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js")
-    .then(() => console.log("Service Worker berhasil"))
-    .catch(err => console.log(err));
-}
-</script>
+    <!-- MENU NAVIGASI -->
+    <div class="navbar">
+        <div class="nav-brand" onclick="kembali()"> [RANDOM KOSAKATA]</div>
+        <div class="nav-menu">
+            <button onclick="downloadBackup()">💾 simpan progres</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- HALAMAN HOME (DAFTAR BAB) -->
+        <div id="home">
+            <h1>Daftar bab</h1>
+
+            <div class="card">
+                <input id="inputBab" placeholder="Nama Bab Baru (Contoh: modul dasar bab1 bahasa)">
+                <button class="action-btn" onclick="tambahBab()">Tambah Bab</button>
+            </div>
+
+            <div id="listBab">
+                <!-- Daftar bab akan muncul di sini -->
+            </div>
+        </div>
+
+        <!-- HALAMAN DETAIL BAB -->
+        <div id="halamanBab" class="hidden">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <button class="secondary-btn" onclick="kembali()">X</button>
+                <h2 id="judulBab" style="margin:0; font-size:18px;"></h2>
+            </div>
+
+            <!-- Form Tambah Kata -->
+            <div class="card">
+                <h3>Tambah Kosakata</h3>
+                <input id="inputKata" placeholder="Kosakata (Asing)">
+                <input id="inputArti" placeholder="Arti (Indonesia)">
+                <button class="action-btn" onclick="tambahKata()">Simpan Kata</button>
+            </div>
+
+            <!-- Form Edit (Hidden by default) -->
+            <div id="editForm" class="card hidden" style="border: 2px solid #d32f2f;">
+                <h3>Edit Kosakata</h3>
+                <input id="editKata" placeholder="Kosakata">
+                <input id="editArti" placeholder="Arti">
+                <div style="display:flex; gap:10px;">
+                    <button class="action-btn" onclick="simpanEdit()">selesai</button>
+                    <button class="secondary-btn" onclick="batalEdit()">Batal</button>
+                </div>
+            </div>
+
+            <!-- Pencarian -->
+            <div class="card">
+                <input id="cariKata" placeholder="🔍 Cari kosakata..." onkeyup="tampilkanKata()">
+            </div>
+
+            <!-- Daftar Kata -->
+            <div class="card">
+                <div class="row" style="border-bottom:2px solid #ddd; margin-bottom:10px;">
+                    <b>Kosakata</b>
+                    <b>Aksi</b>
+                </div>
+                <div id="listKata">
+                    <!-- List kata muncul di sini -->
+                </div>
+            </div>
+
+            <!-- Area Acak Kata -->
+            <div class="center">
+                <button class="action-btn" style="font-size:18px; padding:15px;" onclick="acakKata()">acak kata</button>
+            </div>
+
+            <div id="hasil">
+                wes siap belajare bos?
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // --- LOGIKA DATA ---
+        let data = JSON.parse(localStorage.getItem("randomKata")) || {};
+        let babAktif = "";
+        let editIndex = -1;
+        let timer = null;
+        let sudahKeluar = [];
+
+        function simpan() {
+            localStorage.setItem("randomKata", JSON.stringify(data));
+        }
+
+        // --- FUNGSI NAVIGASI & HOME ---
+        function tampilkanBab() {
+            let html = "";
+            let adaData = false;
+            
+            for (let bab in data) {
+                adaData = true;
+                html += `
+                <div class="card">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <b style="font-size:18px;">${bab}</b>
+                            <br>
+                            <span class="small">${data[bab].length} kata</span>
+                        </div>
+                        <div>
+                            <button class="secondary-btn" onclick="bukaBab('${bab}')">BUKA</button>
+                            <button class="secondary-btn" style="background:#ef5350" onclick="hapusBab('${bab}')">Hapus</button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            if (!adaData) {
+                html = "<p class='center small'>Belum ada bab. Silakan tambah bab baru di atas.</p>";
+            }
+
+            document.getElementById("listBab").innerHTML = html;
+        }
+
+        function tambahBab() {
+            let nama = document.getElementById("inputBab").value.trim();
+            if (!nama) return;
+            if (data[nama]) {
+                alert("Bab sudah ada!");
+                return;
+            }
+            data[nama] = [];
+            simpan();
+            tampilkanBab();
+            document.getElementById("inputBab").value = "";
+        }
+
+        function hapusBab(nama) {
+            if (confirm(`Yakin ingin menghapus bab "${nama}" beserta isinya?`)) {
+                delete data[nama];
+                simpan();
+                tampilkanBab();
+            }
+        }
+
+        function kembali() {
+            document.getElementById("halamanBab").classList.add("hidden");
+            document.getElementById("home").classList.remove("hidden");
+            document.getElementById("hasil").innerHTML = "Tekan tombol di atas untuk mulai belajar";
+            if(timer) clearInterval(timer);
+            tampilkanBab(); // Refresh list bab saat kembali
+        }
+
+        // --- FUNGSI DETAIL BAB ---
+        function bukaBab(nama) {
+            babAktif = nama;
+            sudahKeluar = [];
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("halamanBab").classList.remove("hidden");
+            document.getElementById("judulBab").innerText = nama;
+            document.getElementById("hasil").innerHTML = "Siap belajar? Klik 'Acak Kata!'";
+            document.getElementById("cariKata").value = "";
+            tampilkanKata();
+            document.getElementById("inputKata").focus();
+        }
+
+        function tambahKata() {
+            let kata = document.getElementById("inputKata").value.trim();
+            let arti = document.getElementById("inputArti").value.trim();
+
+            if (!kata || !arti) {
+                alert("Mohon isi kedua kolom!");
+                return;
+            }
+
+            // Cek duplikat
+            if (data[babAktif].some(item => item.kata.toLowerCase() === kata.toLowerCase())) {
+                alert("Kata ini sudah ada di dalam bab.");
+                return;
+            }
+
+            data[babAktif].push({ kata: kata, arti: arti });
+            simpan();
+            tampilkanKata();
+            
+            document.getElementById("inputKata").value = "";
+            document.getElementById("inputArti").value = "";
+            document.getElementById("inputKata").focus();
+        }
+
+        function tampilkanKata() {
+            let cari = document.getElementById("cariKata").value.toLowerCase();
+            let html = "";
+            let ditemukan = false;
+
+            data[babAktif].forEach((item, index) => {
+                if (item.kata.toLowerCase().includes(cari) || item.arti.toLowerCase().includes(cari)) {
+                    ditemukan = true;
+                    html += `
+                    <div class="row">
+                        <div>
+                            <div class="kata">${item.kata}</div>
+                            <div class="small">${item.arti}</div>
+                        </div>
+                        <div>
+                            <button class="secondary-btn" onclick="editKata(${index})">EDIT</button>
+                            <button class="secondary-btn" style="background:#ef5350" onclick="hapusKata(${index})">HAPUS</button>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            if (!ditemukan) html = "<p class='small center'>Tidak ada kata yang cocok.</p>";
+            document.getElementById("listKata").innerHTML = html;
+        }
+
+        // --- EDIT & HAPUS ---
+        function editKata(index) {
+            // Jika sedang mencari, kita harus mencari index asli di array data
+            // Namun untuk simplifikasi, kita asumsikan user tidak mengedit saat filter aktif
+            // Atau kita ambil dari data langsung berdasarkan index
+            
+            editIndex = index;
+            document.getElementById("editForm").classList.remove("hidden");
+            document.getElementById("editKata").value = data[babAktif][index].kata;
+            document.getElementById("editArti").value = data[babAktif][index].arti;
+            
+            // Scroll ke form edit
+            document.getElementById("editForm").scrollIntoView({behavior: "smooth"});
+        }
+
+        function simpanEdit() {
+            let kata = document.getElementById("editKata").value.trim();
+            let arti = document.getElementById("editArti").value.trim();
+
+            if (!kata || !arti) {
+                alert("Isi semua kolom!");
+                return;
+            }
+
+            data[babAktif][editIndex] = { kata: kata, arti: arti };
+            simpan();
+            tampilkanKata();
+            batalEdit();
+        }
+
+        function batalEdit() {
+            editIndex = -1;
+            document.getElementById("editForm").classList.add("hidden");
+        }
+
+        function hapusKata(index) {
+            if (confirm("Hapus kata ini?")) {
+                data[babAktif].splice(index, 1);
+                simpan();
+                tampilkanKata();
+            }
+        }
+
+        // --- FITUR ACAK KATA ---
+        function acakKata() {
+            if (data[babAktif].length === 0) {
+                document.getElementById("hasil").innerHTML = "Belum ada kosakata di bab ini.";
+                return;
+            }
+
+            if (sudahKeluar.length === data[babAktif].length) {
+                document.getElementById("hasil").innerHTML = `
+                    <b>🎉 Selesai!</b><br>Semua kata sudah dipelajari boss kalo ada yang salah ngulas lagi aja bosqu.<br><br>
+                    <button class="action-btn" onclick="mulaiLagi()">Ulangi Lagi</button>
+                `;
+                return;
+            }
+
+            if (timer) clearInterval(timer);
+
+            let index;
+            do {
+                index = Math.floor(Math.random() * data[babAktif].length);
+            } while (sudahKeluar.includes(index));
+
+            sudahKeluar.push(index);
+            let item = data[babAktif][index];
+            let hitung = 3;
+
+            document.getElementById("hasil").innerHTML = `
+                <div class="fade-in">
+                    <b style="font-size:32px; color:#d32f2f">${item.kata}</b>
+                    <br><br>
+                    Arti muncul dalam...
+                    <br>
+                    <span id="countdown" style="font-size:40px; font-weight:bold;">${hitung}</span>
+                </div>
+            `;
+
+            timer = setInterval(() => {
+                hitung--;
+                if (hitung > 0) {
+                    document.getElementById("countdown").innerText = hitung;
+                } else {
+                    clearInterval(timer);
+                    document.getElementById("hasil").innerHTML = `
+                        <div class="fade-in">
+                            <b style="font-size:32px; color:#d32f2f">${item.kata}</b>
+                            <br>
+                            <hr style="width:50%; border:1px solid #ddd; margin:15px auto;">
+                            <div style="font-size:24px;">${item.arti}</div>
+                        </div>
+                    `;
+                }
+            }, 1000);
+        }
+
+        function mulaiLagi() {
+            sudahKeluar = [];
+            acakKata();
+        }
+
+        // --- FITUR TAMBAHAN MENU ---
+        function downloadBackup() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", "backup_kosakata.json");
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        function resetData() {
+            if(confirm("PERINGATAN: Ini akan menghapus SEMUA data bab dan kata. Lanjutkan?")) {
+                localStorage.removeItem("randomKata");
+                data = {};
+                tampilkanBab();
+                alert("Semua data telah direset.");
+            }
+        }
+
+        // Inisialisasi awal
+        tampilkanBab();
+
+    </script>
 </body>
-
 </html>
