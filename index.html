@@ -9,7 +9,8 @@
 content="width=device-width,initial-scale=1">
 
 <title>Random Kata</title>
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d32f2f">
 <style>
 
 *{
@@ -1457,7 +1458,13 @@ tampilkanBab();
 
 
 </script>
-
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker berhasil"))
+    .catch(err => console.log(err));
+}
+</script>
 </body>
 
 </html>
