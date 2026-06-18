@@ -392,6 +392,20 @@ input:focus{
             onclick="acakKata()">
 
                 Acak Kata
+                </button>
+
+    <button
+      id="btnAuto"
+      onclick="toggleAuto()"
+      style="
+      margin-left:8px;
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      font-size:18px;">
+
+      ▶
+    </button>
             
         </div>
 
@@ -1313,7 +1327,31 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log('SW aktif'))
     .catch(err => console.log(err));
 }
+let autoPlay = null;
 
+function toggleAuto(){
+
+  const btn = document.getElementById("btnAuto");
+
+  if(autoPlay === null){
+
+    autoPlay = setInterval(function(){
+      acakKata();
+    },3000);
+
+    btn.innerHTML = "⏸";
+
+  }else{
+
+    clearInterval(autoPlay);
+
+    autoPlay = null;
+
+    btn.innerHTML = "▶";
+
+  }
+
+}
     
 </script>
 
