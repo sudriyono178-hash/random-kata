@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -44,6 +44,8 @@ body{
     color:white;
 
     z-index:9999;
+
+    transition:0.5s;
 }
 
 .logo{
@@ -160,7 +162,6 @@ transform:scale(1);
 
 }
 
-}
 /* NAVBAR */
 
 .navbar{
@@ -334,21 +335,6 @@ input:focus{
 </head>
 <body>
 
-<div id="menuAwal">
-<h1 style="color:white;"
-
-    <h1>[📚 RANDOM KOSAKATA]</h1>
-
-    <p>Belajar kosakata dengan mudah</p>
-
-    <button onclick="mulaiApp()">
-
-        Mulai Belajar
-
-    </button>
-
-</div>
-
 <!-- NAVBAR -->
 
 <div class="navbar">
@@ -369,7 +355,7 @@ input:focus{
 </div>
 <div id="menuAwal">
 
-    <img src="icon-512.png" class="logo">
+    <img src="icon-512.jpg" class="logo">
 
     <h1>RANDOM KOSAKATA</h1>
 
@@ -1442,12 +1428,22 @@ function jawabanSalah(){
 
 }
 
+
+
+
 function mulaiApp(){
 
-    document
-    .getElementById("menuAwal")
-    .style.display = "none";
+    document.getElementById("btnMulai").style.display="none";
+    document.getElementById("loading").style.display="block";
 
+    setTimeout(function(){
+        document.getElementById("menuAwal").style.opacity="0";
+
+        setTimeout(function(){
+            document.getElementById("menuAwal").style.display="none";
+        },500);
+
+    },1000);
 }
 
 // BACKUP
@@ -1538,23 +1534,7 @@ function toggleAuto(){
 
 
 }
-    function mulaiApp(){
-
-    // Tombol Mulai hilang
-    document.getElementById("btnMulai").style.display = "none";
-
-    // Loading muncul
-    document.getElementById("loading").style.display = "block";
-
-    // Tunggu 2 detik
-    setTimeout(function(){
-
-        // Splash screen hilang
-        document.getElementById("menuAwal").style.display = "none";
-
-    },2000);
-
-}
+    
 </script>
 
 </body>
