@@ -1256,7 +1256,8 @@ function acakKata(){
 
 
     let item = data[babAktif][index];
-
+suaraTerakhir = item.kata;
+bahasaTerakhir = "ko-KR";
     bicara(item.kata, "ko-KR");
     
     indexAcak = index;
@@ -1412,9 +1413,6 @@ function mulaiLagi(){
  let suaraTerakhir = "";
 let bahasaTerakhir = "";
 function bicara(teks, bahasa){
-
-    suaraTerakhir = teks;
-    bahasaTerakhir = bahasa;
 
     window.speechSynthesis.cancel();
 
