@@ -1372,6 +1372,22 @@ style="font-size:28px;color:#0066cc;">
                
                ❌salah
                </button>
+               <button
+onclick="ulangiSuara()"
+style="
+margin-top:20px;
+margin-left:10px;
+padding:12px 20px;
+border:none;
+border-radius:15px;
+background:#1976d2;
+color:white;
+font-size:18px;
+font-weight:bold;">
+
+🔊 ulangi
+
+</button>
             `;
 
         }
@@ -1393,23 +1409,47 @@ function mulaiLagi(){
     }, 3000);
 
 }
+ let suaraTerakhir = "";
+let bahasaTerakhir = "";
 function bicara(teks, bahasa){
+
+    suaraTerakhir = teks;
+    bahasaTerakhir = bahasa;
+
+    window.speechSynthesis.cancel();
 
     let suara = new SpeechSynthesisUtterance();
 
     suara.text = teks;
-
     suara.lang = bahasa;
 
-    suara.rate = 0.9;
-
+    suara.rate = 0.75;
     suara.pitch = 1;
+    suara.volume = 1;
 
     window.speechSynthesis.speak(suara);
 
+}
+function ulangiSuara(){
+
+    if(suaraTerakhir != ""){
+
+        window.speechSynthesis.cancel();
+
+        let suara = new SpeechSynthesisUtterance();
+
+        suara.text = suaraTerakhir;
+        suara.lang = bahasaTerakhir;
+
+        suara.rate = 0.75;
+        suara.pitch = 1;
+        suara.volume = 1;
+
+        window.speechSynthesis.speak(suara);
+
+    }
 
 }
-
 function jawabanBenar(){
     benar++;
     acakKata();
@@ -1458,7 +1498,15 @@ function mulaiApp(){
 
     },1000);
 }
+function ulangiSuara(){
 
+    if(suaraTerakhir != ""){
+
+        bicara(suaraTerakhir, "ko-KR");
+
+    }
+
+}
 // BACKUP
 
 function downloadBackup(){
