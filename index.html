@@ -609,7 +609,8 @@ let timer = null;
 
 let sudahKeluar = [];
 
-
+let suaraTerakhir = "";
+let bahasaTerakhir = "";
 
 function simpan(){
 
@@ -1413,7 +1414,8 @@ function mulaiLagi(){
  let suaraTerakhir = "";
 let bahasaTerakhir = "";
 function bicara(teks, bahasa){
-
+suaraTerakhir = teks;
+bahasaTerakhir = bahasa;
     window.speechSynthesis.cancel();
 
     let suara = new SpeechSynthesisUtterance();
