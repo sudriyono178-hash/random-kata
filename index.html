@@ -182,7 +182,7 @@ transform:scale(1);
 .navbar{
     background:#1976d2;
     padding:15px 20px;
-    display:flex;
+    display:none;
     justify-content:space-between;
     align-items:center;
     box-shadow:0 2px 5px rgba(0,0,0,0.2);
@@ -1490,6 +1490,7 @@ function mulaiApp(){
     document.getElementById("loading").style.display="block";
 
     setTimeout(function(){
+     document.querySelector(".navbar").style.display = "flex";
         document.getElementById("menuAwal").style.opacity="0";
 
         setTimeout(function(){
