@@ -1625,9 +1625,16 @@ function toggleAuto(){
     
 </script>
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import {
+  getFirestore
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBEHnrSuOqZ-i1tc9N1zE0gInTlVrhCH_E",
@@ -1644,6 +1651,8 @@ const app = initializeApp(firebaseConfig);
 window.auth = getAuth(app);
 window.db = getFirestore(app);
 window.provider = new GoogleAuthProvider();
+window.signInWithPopup = signInWithPopup;
+window.signOut = signOut;
 
 console.log("Firebase berhasil terhubung!");
 </script>
