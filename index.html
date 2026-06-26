@@ -1663,8 +1663,31 @@ window.db = getFirestore(app);
 window.provider = new GoogleAuthProvider();
 window.signInWithPopup = signInWithPopup;
 window.signOut = signOut;
-
+const auth = window.auth;
+const provider = window.provider;
 console.log("Firebase berhasil terhubung!");
+    document.getElementById("loginGoogle").addEventListener("click", async () => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+
+        document.getElementById("namaUser").textContent = result.user.displayName;
+        document.getElementById("userBox").style.display = "none";
+        document.getElementById("userInfo").style.display = "block";
+
+        alert("Berhasil masuk sebagai " + result.user.displayName);
+
+    } catch (e) {
+        alert(e.message);
+        console.error(e);
+    }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await signOut(auth);
+
+    document.getElementById("userBox").style.display = "block";
+    document.getElementById("userInfo").style.display = "none";
+});
 </script>
 
 
