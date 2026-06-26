@@ -663,13 +663,21 @@ function tampilkanBab(){
 
         <div class="card">
 
-            <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
 
-                <div>
+                <div style="flex:1;min-width:0;">
 
                     <b style="font-size:18px;">
                         ${bab}
-                    </b>
+                        <div style="
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+font-size:18px;
+font-weight:bold;">
+    ${bab}
+</div>
+                    
 
                     <br>
 
