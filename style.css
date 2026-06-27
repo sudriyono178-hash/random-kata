@@ -1,1 +1,166 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
+body{
+    background:#f5f7fb;
+    color:#222;
+}
+
+.hidden{
+    display:none;
+}
+
+header{
+    background:#1976d2;
+    color:#fff;
+    padding:15px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+main{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+section{
+    background:#fff;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+h2,h3{
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+button{
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+.btn-biru{
+    background:#1976d2;
+    color:white;
+}
+
+.btn-hijau{
+    background:#2e7d32;
+    color:white;
+}
+
+.btn-merah{
+    background:#d32f2f;
+    color:white;
+}
+
+.btn-secondary{
+    background:#757575;
+    color:white;
+}
+
+.tambahBab{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.tambahBab input{
+    flex:1;
+    margin:0;
+}
+
+#daftarBab{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.kartuBab{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    border-radius:12px;
+    background:#fafafa;
+    border:1px solid #ddd;
+}
+
+.kartuBab h3{
+    margin-bottom:5px;
+}
+
+.aksiBab{
+    display:flex;
+    gap:10px;
+}
+
+.belajar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.kartu-soal{
+    text-align:center;
+    padding:25px;
+    border-radius:15px;
+    background:#f8f8f8;
+    margin-bottom:20px;
+}
+
+.kata-china{
+    font-size:45px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.arti{
+    font-size:24px;
+    color:#2e7d32;
+    margin-bottom:20px;
+}
+
+.aksi-belajar{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.formTambah{
+    display:grid;
+    gap:10px;
+}
+
+.itemKata{
+    border:1px solid #ddd;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
