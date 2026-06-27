@@ -769,8 +769,8 @@ async function tambahBab(){
     data[nama] = [];
 if (auth.currentUser) {
     try {
-        await setDoc(
-            doc(db, "users", auth.currentUser.uid, "bab", nama),
+        await window.setDoc(
+            window.doc(window.db,, "users", auth.currentUser.uid, "bab", nama),
             {
                 nama: nama,
                 kata: []
@@ -1679,6 +1679,8 @@ const app = initializeApp(firebaseConfig);
 
 window.auth = getAuth(app);
 window.db = getFirestore(app);
+window.setDoc = setDoc;
+window.doc = doc;
 window.provider = new GoogleAuthProvider();
 window.signInWithPopup = signInWithPopup;
 window.signOut = signOut;
