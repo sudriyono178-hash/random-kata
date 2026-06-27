@@ -746,7 +746,7 @@ font-weight:bold;">
 
 
 
-function tambahBab(){
+async function tambahBab(){
 
     let nama = document
     .getElementById("inputBab")
@@ -767,7 +767,15 @@ function tambahBab(){
 
 
     data[nama] = [];
-
+if (auth.currentUser) {
+    await setDoc(
+        doc(db, "users", auth.currentUser.uid, "bab", nama),
+        {
+            nama: nama,
+            kata: []
+        }
+    );
+}
 
     simpan();
 
@@ -1643,7 +1651,13 @@ import {
   signOut
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 import {
-  getFirestore
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const firebaseConfig = {
