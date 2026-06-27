@@ -768,13 +768,18 @@ async function tambahBab(){
 
     data[nama] = [];
 if (auth.currentUser) {
-    await setDoc(
-        doc(db, "users", auth.currentUser.uid, "bab", nama),
-        {
-            nama: nama,
-            kata: []
-        }
-    );
+    try {
+        await setDoc(
+            doc(db, "users", auth.currentUser.uid, "bab", nama),
+            {
+                nama: nama,
+                kata: []
+            }
+        );
+    } catch (e) {
+        alert(e.message);
+        console.error(e);
+    }
 }
 
     simpan();
