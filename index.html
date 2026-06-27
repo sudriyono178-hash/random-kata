@@ -769,8 +769,8 @@ async function tambahBab(){
     data[nama] = [];
 if (auth.currentUser) {
     try {
-        await window.setDoc(
-            window.doc(window.db,, "users", auth.currentUser.uid, "bab", nama),
+        await setDoc(
+            doc(db,, "users", auth.currentUser.uid, "bab", nama),
             {
                 nama: nama,
                 kata: []
