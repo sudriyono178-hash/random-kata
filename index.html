@@ -651,11 +651,22 @@ function simpan(){
         "randomKata",
         JSON.stringify(data)
     );
+simpanFirebase();
 
 }
 
+async function simpanFirebase() {
+    try {
+        await window.setDoc(
+            window.doc(window.db, "data", "randomKata"),
+            data
+        );
 
-
+        console.log("Data berhasil disimpan ke Firebase");
+    } catch (e) {
+        console.error("Gagal simpan:", e);
+    }
+}
 // HOME
 
 function tampilkanBab(){
