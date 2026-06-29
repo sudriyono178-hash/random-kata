@@ -656,15 +656,18 @@ simpanFirebase();
 }
 
 async function simpanFirebase() {
+    alert("Masuk simpanFirebase");
+
     try {
         await window.setDoc(
             window.doc(window.db, "data", "randomKata"),
             data
         );
 
-        console.log("Data berhasil disimpan ke Firebase");
+        alert("Berhasil simpan ke Firebase");
     } catch (e) {
-        console.error("Gagal simpan:", e);
+        alert(e.message);
+        console.error(e);
     }
 }
 // HOME
