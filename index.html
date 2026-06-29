@@ -1679,6 +1679,10 @@ const app = initializeApp(firebaseConfig);
 
 window.auth = getAuth(app);
 window.db = getFirestore(app);
+    window.collection = collection;
+window.getDocs = getDocs;
+window.addDoc = addDoc;
+window.deleteDoc = deleteDoc;
 window.setDoc = setDoc;
 window.doc = doc;
 window.provider = new GoogleAuthProvider();
