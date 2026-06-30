@@ -199,27 +199,35 @@ transform:scale(1);
 
 /* NAVBAR */
     
+
 .navbar{
     background:#1976d2;
-    padding:15px;
+    padding:15px 20px;
     display:flex;
-    justify-content:center; /* tombol berada di tengah */
+    justify-content:space-between;
     align-items:center;
     box-shadow:0 2px 5px rgba(0,0,0,0.2);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.nav-menu{
-    display:flex;
-    gap:20px;
+.nav-brand{
+    color:white;
+    font-weight:bold;
+    font-size:17px;
+    cursor:pointer;
 }
 
 .nav-menu button{
     background:rgba(255,255,255,0.2);
     color:white;
-    border:1px solid rgba(255,255,255,0.3);
-    padding:12px 20px;
-    border-radius:14px;
-    font-size:16px;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
 }
 /* CONTAINER */
 
