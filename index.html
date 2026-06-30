@@ -181,7 +181,7 @@ transform:scale(1);
     width:100%;
     height:100vh;
 
-    background:#1972da;
+    background:#1972d2;
 
     color:white;
 
@@ -271,7 +271,7 @@ input:focus{
 
 .action-btn{
     width:100%;
-    background:#1972de;
+    background:#1972d2;
     color:white;
     border:none;
     padding:10px 16px;
@@ -753,33 +753,22 @@ async function tambahBab(){
     .value
     .trim();
 
-
     if(!nama) return;
 
-
     if(data[nama]){
-
         alert("Bab sudah ada!");
-
         return;
-
     }
-
 
     data[nama] = [];
-if (auth.currentUser) {
-    try {
-        await setDoc(
-            doc(db, "users", auth.currentUser.uid, "bab", nama),
-            {
-                nama: nama,
-                kata: []
-            }
-        );
-    } catch (e) {
-        alert(e.message);
-        console.error(e);
-    }
+
+    simpan();
+    tampilkanBab();
+
+    document
+    .getElementById("inputBab")
+    .value = "";
+
 }
 
     simpan();
@@ -1646,69 +1635,6 @@ function toggleAuto(){
 
 }
     
-</script>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  doc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBEHnrSuOqZ-i1tc9N1zE0gInTlVrhCH_E",
-  authDomain: "random-kosakata.firebaseapp.com",
-  projectId: "random-kosakata",
-  storageBucket: "random-kosakata.firebasestorage.app",
-  messagingSenderId: "268677262481",
-  appId: "1:268677262481:web:5a4bd59899a91fd6772330",
-  measurementId: "G-J0ZKJ18Q7T"
-};
-
-const app = initializeApp(firebaseConfig);
-
-window.auth = getAuth(app);
-window.db = getFirestore(app);
-window.setDoc = setDoc;
-window.doc = doc;
-window.provider = new GoogleAuthProvider();
-window.signInWithPopup = signInWithPopup;
-window.signOut = signOut;
-const auth = window.auth;
-const provider = window.provider;
-console.log("Firebase berhasil terhubung!");
-    document.getElementById("loginGoogle").addEventListener("click", async () => {
-    try {
-        const result = await signInWithPopup(auth, provider);
-
-        document.getElementById("namaUser").textContent = result.user.displayName;
-        document.getElementById("userBox").style.display = "none";
-        document.getElementById("userInfo").style.display = "block";
-
-        alert("Berhasil masuk sebagai " + result.user.displayName);
-
-    } catch (e) {
-        alert(e.message);
-        console.error(e);
-    }
-});
-
-document.getElementById("logoutBtn").addEventListener("click", async () => {
-    await signOut(auth);
-
-    document.getElementById("userBox").style.display = "block";
-    document.getElementById("userInfo").style.display = "none";
-});
 </script>
 
 
