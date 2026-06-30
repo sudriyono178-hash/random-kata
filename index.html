@@ -181,7 +181,7 @@ transform:scale(1);
     width:100%;
     height:100vh;
 
-    background:#1976d22;
+    background:#1976d2;
 
     color:white;
 
@@ -271,7 +271,7 @@ input:focus{
 
 .action-btn{
     width:100%;
-    background:#1976d22;
+    background:#1976d2;
     color:white;
     border:none;
     padding:10px 16px;
@@ -384,7 +384,16 @@ input:focus{
         <button onclick="downloadBackup()">
              💾Simpan Progres
         </button>
+<button onclick="document.getElementById('importFile').click()">
+📂 Muat Backup
+</button>
 
+<input
+id="importFile"
+type="file"
+accept=".json"
+style="display:none"
+onchange="importBackup(event)">
     </div>
 
 </div>
@@ -624,7 +633,13 @@ let bahasaTerakhir = "";
 
 // DATA
 
-let data = JSON.parse(localStorage.getItem("randomKata")) || {};
+let data;
+
+try{
+    data = JSON.parse(localStorage.getItem("randomKata")) || {};
+}catch(e){
+    data = {};
+}
 
 let babAktif = "";
 
@@ -634,7 +649,7 @@ let timer = null;
 
 let sudahKeluar = [];
 
-
+let indexAcak = -1;
 
 function simpan(){
 
@@ -651,12 +666,14 @@ function simpan(){
 
 function tampilkanBab(){
 
-    let html = "";
+    let html="";
+
+const daftarBab=Object.keys(data).sort();
 
     let adaData = false;
 
 
-    for(let bab in data){
+    for(const bab of daftarBab){
 
         adaData = true;
 
@@ -737,7 +754,7 @@ font-weight:bold;">
 
 
 
-async function tambahBab(){
+function tambahBab(){
 
     let nama = document
     .getElementById("inputBab")
@@ -750,7 +767,7 @@ async function tambahBab(){
         alert("Bab sudah ada!");
         return;
     }
-
+nama=nama.trim();
     data[nama] = [];
 
     simpan();
@@ -759,7 +776,7 @@ async function tambahBab(){
     document
     .getElementById("inputBab")
     .value = "";
-
+document.getElementById("inputBab").focus();
 }
 
 
@@ -821,7 +838,13 @@ function kembali(){
 function bukaBab(nama){
 
     babAktif = nama;
+if(!data[babAktif]){
 
+    data[babAktif]=[];
+
+    simpan();
+
+}
     sudahKeluar = [];
 
 
@@ -909,8 +932,8 @@ function tambahKata(){
 
         kata:kata,
 
-        arti:arti
-
+        arti: arti,
+pin: false
     });
 
 
@@ -938,7 +961,11 @@ function tambahKata(){
 
 
 function tampilkanKata(){
+if(!data[babAktif]){
 
+    data[babAktif]=[];
+
+}
     let cari = document
     .getElementById("cariKata")
     .value
@@ -1163,21 +1190,9 @@ let benar = 0;
 
 let salah = 0;
 
-let timerPin = [];
 
-function hapusPin(index){
 
-    if(confirm("Hapus pin?")){
-
-        data[babAktif][index].pin = false;
-
-        localStorage.setItem(
-            "randomkata",
-            JSON.stringify(data)
-        );
-    }
-}
-
+    
 // ACAK KATA
 
 function acakKata(){
@@ -1283,9 +1298,12 @@ function acakKata(){
     bicara(item.kata, "ko-KR");
     
     indexAcak = index;
-  if(item.pin === undefined){
-  item.pin = false;
-  }
+
+if(typeof item.pin !== "boolean"){
+
+    item.pin = false;
+
+}
 
     let hitung = 3;
 
@@ -1429,13 +1447,17 @@ box-shadow:0 3px 8px rgba(0,0,0,.25);
 
 function mulaiLagi(){
 
-    sudahKeluar=[];
+    sudahKeluar = [];
+
+    benar = 0;
+
+    salah = 0;
 
     setTimeout(function(){
 
         acakKata();
 
-    }, 3000);
+    },3000);
 
 }
 function bicara(teks, bahasa){
@@ -1478,35 +1500,43 @@ function ulangiSuara(){
 
 }
 function jawabanBenar(){
+
     benar++;
+
+    simpan();
+
     acakKata();
+
 }
 
 function jawabanSalah(){
+
     salah++;
-    data[babAktif][indexAcak].pin = true;
-    
-    localStorage.setItem(
-       "randomKata",
-        JSON.stringify(data)
-    );
 
-   tampilkanKata();
-   
-    acakKata();
-}
-   function hapusPin(index){
+    if(indexAcak >= 0){
 
-    data[babAktif][index].pin = false;
+        data[babAktif][indexAcak].pin = true;
 
-    localStorage.setItem(
-        "randomKata",
-        JSON.stringify(data)
-    );
+    }
+
+    simpan();
 
     tampilkanKata();
 
+    acakKata();
+
 }
+   function hapusPin(index){
+
+    if(index < 0) return;
+
+    data[babAktif][index].pin = false;
+
+    simpan();
+
+    tampilkanKata();
+
+   }
 
 
 
@@ -1530,59 +1560,90 @@ function mulaiApp(){
 
 function downloadBackup(){
 
-    const dataStr =
+    const isi = JSON.stringify(data, null, 2);
 
-    "data:text/json;charset=utf-8,"
-
-    +
-
-    encodeURIComponent(
-
-    JSON.stringify(data)
-
+    const blob = new Blob(
+        [isi],
+        {type:"application/json"}
     );
 
+    const url = URL.createObjectURL(blob);
 
-    const a =
+    const a = document.createElement("a");
 
-    document.createElement("a");
+    a.href = url;
 
-
-    a.setAttribute(
-
-    "href",
-
-    dataStr
-
-    );
-
-
-    a.setAttribute(
-
-    "download",
-
-    "backup_kosakata.json"
-
-    );
-
+    a.download = "backup_randomkata.json";
 
     document.body.appendChild(a);
 
     a.click();
 
-    a.remove();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
 
 }
 
+function importBackup(event){
 
+    const file = event.target.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload=function(e){
+
+        try{
+
+            const hasil=JSON.parse(e.target.result);
+
+            if(typeof hasil!=="object"){
+
+                alert("File tidak valid");
+
+                return;
+
+            }
+
+            if(confirm("Timpa semua data lama?")){
+
+                data=hasil;
+
+                simpan();
+
+                tampilkanBab();
+
+                alert("Backup berhasil dimuat.");
+
+            }
+
+        }catch{
+
+            alert("File JSON rusak.");
+
+        }
+
+    };
+
+    reader.readAsText(file);
+
+}
 
 // AWAL
 
 tampilkanBab();
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-    .then(() => console.log('SW aktif'))
-    .catch(err => console.log(err));
+if("serviceWorker" in navigator){
+
+    window.addEventListener("load",()=>{
+
+        navigator.serviceWorker
+        .register("service-worker.js")
+        .catch(console.error);
+
+    });
+
 }
 let autoPlay = null;
 
