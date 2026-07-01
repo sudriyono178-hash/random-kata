@@ -449,7 +449,11 @@ onchange="importBackup(event)">
     <!-- HOME -->
 
     <div id="home" class="hidden">
-
+<button
+    class="secondary-btn"
+    onclick="kembaliHome()">
+        ← Back
+</button>
         <h1>Daftar Bab</h1>
 
         <div class="card">
@@ -1795,6 +1799,15 @@ function cariSemuaKosakata(){
     .innerHTML = html;
 
 }
+    function kembaliHome(){
+
+    document.getElementById("home")
+    .classList.add("hidden");
+
+    document.getElementById("menuMode")
+    .classList.remove("hidden");
+
+    }
 </script>
 
 
