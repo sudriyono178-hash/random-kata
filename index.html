@@ -426,7 +426,26 @@ onchange="importBackup(event)">
         </button>
 
     </div>
+<div id="halamanCari" class="hidden">
 
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:15px;">
+        <button class="secondary-btn" onclick="kembaliCari()">
+            Back
+        </button>
+
+        <h2 style="margin:0;">
+            🔍 Cari Kosakata
+        </h2>
+    </div>
+
+    <input
+        id="inputCariSemua"
+        placeholder="Cari kosakata..."
+        onkeyup="cariSemuaKosakata()">
+
+    <div id="hasilCariSemua"></div>
+
+</div>
     <!-- HOME -->
 
     <div id="home" class="hidden">
@@ -1701,7 +1720,79 @@ function toggleAuto(){
 
 function bukaPencarian(){
 
-    alert("Fitur pencarian akan kita buat berikutnya.");
+    document.getElementById("menuMode").classList.add("hidden");
+    document.getElementById("halamanCari").classList.remove("hidden");
+
+    document.getElementById("inputCariSemua").value = "";
+    document.getElementById("hasilCariSemua").innerHTML = "";
+
+}
+    function kembaliCari(){
+
+    document.getElementById("halamanCari")
+    .classList.add("hidden");
+
+    document.getElementById("menuMode")
+    .classList.remove("hidden");
+
+}
+
+function cariSemuaKosakata(){
+
+    let cari = document
+    .getElementById("inputCariSemua")
+    .value
+    .toLowerCase()
+    .trim();
+
+    let html = "";
+
+    for(let bab in data){
+
+        data[bab].forEach(function(item){
+
+            if(
+                item.kata.toLowerCase().includes(cari) ||
+                item.arti.toLowerCase().includes(cari)
+            ){
+
+                html += `
+                <div class="card">
+
+                    <div class="kata">
+                        ${item.kata}
+                    </div>
+
+                    <div class="small">
+                        ${item.arti}
+                    </div>
+
+                    <div style="
+                    margin-top:5px;
+                    color:#666;
+                    font-size:12px;">
+                        📚 ${bab}
+                    </div>
+
+                </div>
+                `;
+            }
+
+        });
+
+    }
+
+    if(cari !== "" && html === ""){
+
+        html = `
+        <div class="card">
+            Kosakata tidak ditemukan.
+        </div>
+        `;
+    }
+
+    document.getElementById("hasilCariSemua")
+    .innerHTML = html;
 
 }
 </script>
