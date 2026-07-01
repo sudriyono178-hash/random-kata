@@ -366,26 +366,6 @@ input:focus{
 </head>
 <body>
 
-<!-- NAVBAR -->
-
-<div class="navbar">
-
- <div class="nav-menu">
-
-        <button onclick="downloadBackup()">
-             💾Simpan Progres
-        </button>
-<button onclick="document.getElementById('importFile').click()">
-📂 Muat Backup
-</button>
-
-<input
-id="importFile"
-type="file"
-accept=".json"
-style="display:none"
-onchange="importBackup(event)">
-    </div>
 
 </div>
 <div id="menuAwal">
@@ -409,6 +389,24 @@ onchange="importBackup(event)">
     <!-- MENU MODE -->
     <div id="menuMode" class="hidden">
 
+<div class="navbar">
+
+ <div class="nav-menu">
+
+        <button onclick="downloadBackup()">
+             💾Simpan Progres
+        </button>
+<button onclick="document.getElementById('importFile').click()">
+📂 Muat Backup
+</button>
+
+<input
+id="importFile"
+type="file"
+accept=".json"
+style="display:none"
+onchange="importBackup(event)">
+ </div>
         <h1>Pilih Mode</h1>
 
         <button
