@@ -406,11 +406,30 @@ onchange="importBackup(event)">
 
 <div class="container">
 
-    
+    <!-- MENU MODE -->
+    <div id="menuMode" class="hidden">
+
+        <h1>Pilih Mode</h1>
+
+        <button
+            class="action-btn"
+            onclick="bukaBelajar()">
+            📚 Belajar Kosakata
+        </button>
+
+        <br><br>
+
+        <button
+            class="action-btn"
+            onclick="bukaPencarian()">
+            🔍 Pencarian Kosakata
+        </button>
+
+    </div>
 
     <!-- HOME -->
 
-    <div id="home">
+    <div id="home" class="hidden">
 
         <h1>Daftar Bab</h1>
 
@@ -1538,13 +1557,19 @@ function mulaiApp(){
     document.getElementById("loading").style.display="block";
 
     setTimeout(function(){
+
         document.getElementById("menuAwal").style.opacity="0";
 
         setTimeout(function(){
+
             document.getElementById("menuAwal").style.display="none";
+
+            document.getElementById("menuMode").classList.remove("hidden");
+
         },500);
 
     },2000);
+
 }
 
 // BACKUP
@@ -1666,7 +1691,19 @@ function toggleAuto(){
 
 
 }
-    
+    function bukaBelajar(){
+
+    document.getElementById("menuMode").classList.add("hidden");
+
+    document.getElementById("home").classList.remove("hidden");
+
+}
+
+function bukaPencarian(){
+
+    alert("Fitur pencarian akan kita buat berikutnya.");
+
+}
 </script>
 
 
