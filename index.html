@@ -451,10 +451,11 @@ onchange="importBackup(event)">
         <h1>🔍 Pencarian Kosakata</h1>
 
         <input
-            type="text"
-            id="inputCari"
-            placeholder="Cari kosakata..."
-            class="search-box">
+    type="text"
+    id="inputCari"
+    class="search-box"
+    placeholder="Cari kosakata..."
+    oninput="cariKosakata()">
 
         <div id="hasilPencarian"></div>
 
@@ -1745,6 +1746,51 @@ function toggleAuto(){
     document.getElementById("halamanPencarian").classList.add("hidden");
 
     document.getElementById("menuMode").classList.remove("hidden");
+
+    }
+
+    function cariKosakata(){
+
+    let keyword = document
+        .getElementById("inputCari")
+        .value
+        .toLowerCase()
+        .trim();
+
+    let hasil = document.getElementById("hasilPencarian");
+
+    hasil.innerHTML = "";
+
+    if(keyword === "") return;
+
+    for(let bab in data){
+
+        let ditemukan = data[bab].filter(item =>
+            item.kata.toLowerCase().includes(keyword)
+        );
+
+        if(ditemukan.length > 0){
+
+            hasil.innerHTML += `<h3>📖 ${bab}</h3>`;
+
+            ditemukan.forEach(item=>{
+
+                hasil.innerHTML += `
+                    <div class="card">
+                        <b>${item.kata}</b><br>
+                        ${item.arti}
+                    </div>
+                `;
+
+            });
+
+        }
+
+    }
+
+    if(hasil.innerHTML===""){
+        hasil.innerHTML="<p>Tidak ditemukan.</p>";
+    }
 
     }
 </script>
