@@ -741,22 +741,30 @@ font-weight:bold;">
                 <div style="display:flex;gap:10px;flex-shrink:0;">
 
                     <button
-                    class="secondary-btn"
-                    onclick="bukaBab('${bab}')">
+class="secondary-btn"
+onclick="bukaBab('${bab}')">
 
-                    BUKA
+    BUKA
 
-                    </button>
+</button>
 
+<button
+class="secondary-btn"
+style="background:#ffb300"
+onclick="editBab('${bab}')">
 
-                    <button
-                    class="secondary-btn"
-                    style="background:#ef5350"
-                    onclick="hapusBab('${bab}')">
+    Edit
 
-                    Hapus
+</button>
 
-                    </button>
+<button
+class="secondary-btn"
+style="background:#ef5350"
+onclick="hapusBab('${bab}')">
+
+    Hapus
+
+</button>
 
                 </div>
 
@@ -812,7 +820,32 @@ nama=nama.trim();
 document.getElementById("inputBab").focus();
 }
 
+function editBab(namaLama){
 
+    let namaBaru = prompt(
+        "Masukkan nama bab baru:",
+        namaLama
+    );
+
+    if(!namaBaru) return;
+
+    namaBaru = namaBaru.trim();
+
+    if(namaBaru === "") return;
+
+    if(data[namaBaru]){
+        alert("Nama bab sudah ada!");
+        return;
+    }
+
+    data[namaBaru] = data[namaLama];
+
+    delete data[namaLama];
+
+    simpan();
+    tampilkanBab();
+
+}
 
 function hapusBab(nama){
 
