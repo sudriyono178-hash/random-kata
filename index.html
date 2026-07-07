@@ -374,10 +374,10 @@ input:focus{
 
  <div class="nav-menu">
 
-        <button onclick="downloadBackup()">
+        <button onclick="klik(); "downloadBackup()">
              💾Simpan Progres
         </button>
-<button onclick="document.getElementById('importFile').click()">
+<button onclick="klik(); "document.getElementById('importFile').click()">
 📂 Muat Backup
 </button>
 
@@ -398,7 +398,7 @@ onchange="importBackup(event)">
 
     <p>Belajar kosakata dengan mudah</p>
 
-    <button id="btnMulai" onclick="mulaiApp()">
+    <button id="btnMulai" onclick="klik(); "mulaiApp()">
         Mulai Belajar
     </button>
 
@@ -415,7 +415,7 @@ onchange="importBackup(event)">
 
         <button
             class="action-btn"
-            onclick="bukaBelajar()">
+            onclick="klik(); "bukaBelajar()">
             📚 Belajar Kosakata
         </button>
 
@@ -423,7 +423,7 @@ onchange="importBackup(event)">
 
         <button
             class="action-btn"
-            onclick="bukaPencarian()">
+            onclick="klik(); "bukaPencarian()">
             🔍 Pencarian Kosakata
         </button>
 
@@ -453,7 +453,7 @@ onchange="importBackup(event)">
     <div id="home" class="hidden">
 <button
     class="secondary-btn"
-    onclick="kembaliHome()">
+    onclick="klik(); "kembaliHome()">
         Back
 </button>
         <h1>Daftar Bab</h1>
@@ -466,7 +466,7 @@ onchange="importBackup(event)">
 
             <button
             class="action-btn"
-            onclick="tambahBab()">
+            onclick="klik(); "tambahBab()">
 
                 Tambah Bab
 
@@ -492,7 +492,7 @@ onchange="importBackup(event)">
 
             <button
             class="secondary-btn"
-            onclick="kembali()">
+            onclick="klik(); "kembali()">
 
                 back
 
@@ -525,7 +525,7 @@ onchange="importBackup(event)">
 
             <button
             class="action-btn"
-            onclick="tambahKata()">
+            onclick="klik(); "tambahKata()">
 
                 Simpan Kata
 
@@ -557,7 +557,7 @@ onchange="importBackup(event)">
 
                 <button
                 class="action-btn"
-                onclick="simpanEdit()">
+                onclick="klik(); "simpanEdit()">
 
                     Selesai
 
@@ -566,7 +566,7 @@ onchange="importBackup(event)">
 
                 <button
                 class="secondary-btn"
-                onclick="batalEdit()">
+                onclick="klik(); "batalEdit()">
 
                     Batal
 
@@ -621,7 +621,7 @@ onchange="importBackup(event)">
             <button
             class="action-btn"
             style="font-size:18px;padding:15px;"
-            onclick="acakKata()">
+            onclick="klik(); "acakKata()">
 
                 Acak Kata
                 </button>
@@ -629,7 +629,7 @@ onchange="importBackup(event)">
     <button
 class="action-btn"
 id="btnAuto"
-onclick="toggleAuto()"
+onclick="klik(); "toggleAuto()"
 style="
 width:40px;
 height:40px;
@@ -749,7 +749,7 @@ flex-wrap:wrap;
 
                     <button
 class="secondary-btn"
-onclick="bukaBab('${bab}')">
+onclick="klik(); "bukaBab('${bab}')">
 
     BUKA
 
@@ -758,7 +758,7 @@ onclick="bukaBab('${bab}')">
 <button
 class="secondary-btn"
 style="background:#ffb300"
-onclick="editBab('${bab}')">
+onclick="klik(); "editBab('${bab}')">
 
     EDIT
 
@@ -767,7 +767,7 @@ onclick="editBab('${bab}')">
 <button
 class="secondary-btn"
 style="background:#ef5350"
-onclick="hapusBab('${bab}')">
+onclick="klik(); "hapusBab('${bab}')">
 
     Hapus
 
@@ -1074,7 +1074,7 @@ if(!data[babAktif]){
                 ${item.pin ?
 
 `<span
-onclick="hapusPin(${index})"
+onclick="klik(); "hapusPin(${index})"
 style="cursor:pointer">
 📌
 </span>`
@@ -1104,7 +1104,7 @@ style="cursor:pointer">
 
                 class="secondary-btn"
 
-                onclick="editKata(${index})">
+                onclick="klik(); "editKata(${index})">
 
                 EDIT
 
@@ -1117,7 +1117,7 @@ style="cursor:pointer">
 
                 style="background:#ef5350"
 
-                onclick="hapusKata(${index})">
+                onclick="klik(); "hapusKata(${index})">
 
                 HAPUS
 
@@ -1319,7 +1319,7 @@ function acakKata(){
 
         class="action-btn"
 
-        onclick="mulaiLagi()">
+        onclick="klik(); "mulaiLagi()">
 
         Ulangi Lagi
 
@@ -1466,7 +1466,7 @@ ${item.pin ? "📌" : ""}
 
 <button
 id="btnUlangi"
-onclick="ulangiSuara()"
+onclick="klik(); "ulangiSuara()"
 style="
 width:44px;
 height:44px;
@@ -1848,6 +1848,26 @@ function cariSemuaKosakata(){
     .classList.remove("hidden");
 
     }
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function klik(){
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.type = "triangle";
+    osc.frequency.value = 800;
+
+    gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.03);
+
+}
 </script>
 
 
