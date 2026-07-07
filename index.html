@@ -374,10 +374,10 @@ input:focus{
 
  <div class="nav-menu">
 
-        <button onclick="klik(); "downloadBackup()">
+        <button onclick="klik(); downloadBackup()">
              💾Simpan Progres
         </button>
-<button onclick="klik(); "document.getElementById('importFile').click()">
+<button onclick="klik(); document.getElementById('importFile').click()">
 📂 Muat Backup
 </button>
 
@@ -423,7 +423,7 @@ onchange="importBackup(event)">
 
         <button
             class="action-btn"
-            onclick="klik(); "bukaPencarian()">
+            onclick="klik(); bukaPencarian()">
             🔍 Pencarian Kosakata
         </button>
 
@@ -453,7 +453,7 @@ onchange="importBackup(event)">
     <div id="home" class="hidden">
 <button
     class="secondary-btn"
-    onclick="klik(); "kembaliHome()">
+    onclick="klik(); kembaliHome()">
         Back
 </button>
         <h1>Daftar Bab</h1>
@@ -466,7 +466,7 @@ onchange="importBackup(event)">
 
             <button
             class="action-btn"
-            onclick="klik(); "tambahBab()">
+            onclick="klik(); tambahBab()">
 
                 Tambah Bab
 
@@ -492,7 +492,7 @@ onchange="importBackup(event)">
 
             <button
             class="secondary-btn"
-            onclick="klik(); "kembali()">
+            onclick="klik(); kembali()">
 
                 back
 
@@ -525,7 +525,7 @@ onchange="importBackup(event)">
 
             <button
             class="action-btn"
-            onclick="klik(); "tambahKata()">
+            onclick="klik(); tambahKata()">
 
                 Simpan Kata
 
@@ -557,7 +557,7 @@ onchange="importBackup(event)">
 
                 <button
                 class="action-btn"
-                onclick="klik(); "simpanEdit()">
+                onclick="klik(); simpanEdit()">
 
                     Selesai
 
@@ -566,7 +566,7 @@ onchange="importBackup(event)">
 
                 <button
                 class="secondary-btn"
-                onclick="klik(); "batalEdit()">
+                onclick="klik(); batalEdit()">
 
                     Batal
 
@@ -621,7 +621,7 @@ onchange="importBackup(event)">
             <button
             class="action-btn"
             style="font-size:18px;padding:15px;"
-            onclick="klik(); "acakKata()">
+            onclick="klik(); acakKata()">
 
                 Acak Kata
                 </button>
@@ -629,7 +629,7 @@ onchange="importBackup(event)">
     <button
 class="action-btn"
 id="btnAuto"
-onclick="klik(); "toggleAuto()"
+onclick="klik(); toggleAuto()"
 style="
 width:40px;
 height:40px;
@@ -749,7 +749,7 @@ flex-wrap:wrap;
 
                     <button
 class="secondary-btn"
-onclick="klik(); "bukaBab('${bab}')">
+onclick="klik(); bukaBab('${bab}')">
 
     BUKA
 
@@ -758,7 +758,7 @@ onclick="klik(); "bukaBab('${bab}')">
 <button
 class="secondary-btn"
 style="background:#ffb300"
-onclick="klik(); "editBab('${bab}')">
+onclick="klik(); editBab('${bab}')">
 
     EDIT
 
@@ -767,7 +767,7 @@ onclick="klik(); "editBab('${bab}')">
 <button
 class="secondary-btn"
 style="background:#ef5350"
-onclick="klik(); "hapusBab('${bab}')">
+onclick="klik(); hapusBab('${bab}')">
 
     Hapus
 
@@ -1074,7 +1074,7 @@ if(!data[babAktif]){
                 ${item.pin ?
 
 `<span
-onclick="klik(); "hapusPin(${index})"
+onclick="klik(); hapusPin(${index})"
 style="cursor:pointer">
 📌
 </span>`
@@ -1104,7 +1104,7 @@ style="cursor:pointer">
 
                 class="secondary-btn"
 
-                onclick="klik(); "editKata(${index})">
+                onclick="klik(); editKata(${index})">
 
                 EDIT
 
@@ -1117,7 +1117,7 @@ style="cursor:pointer">
 
                 style="background:#ef5350"
 
-                onclick="klik(); "hapusKata(${index})">
+                onclick="klik(); hapusKata(${index})">
 
                 HAPUS
 
@@ -1319,7 +1319,7 @@ function acakKata(){
 
         class="action-btn"
 
-        onclick="klik(); "mulaiLagi()">
+        onclick="klik(); mulaiLagi()">
 
         Ulangi Lagi
 
@@ -1466,7 +1466,7 @@ ${item.pin ? "📌" : ""}
 
 <button
 id="btnUlangi"
-onclick="klik(); "ulangiSuara()"
+onclick="klik(); ulangiSuara()"
 style="
 width:44px;
 height:44px;
