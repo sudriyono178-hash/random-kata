@@ -426,7 +426,9 @@ onchange="importBackup(event)">
             onclick="klik(); bukaPencarian()">
             🔍 Pencarian Kosakata
         </button>
-
+<button onclick="lihatData()">
+Lihat Data
+</button>
     </div>
 <div id="halamanCari" class="hidden">
 
@@ -1875,6 +1877,11 @@ function klik(){
     osc.stop(audioCtx.currentTime + 0.05);
 
 }
+    function lihatData(){
+
+    alert(JSON.stringify(data));
+
+    }
 </script>
 
 
