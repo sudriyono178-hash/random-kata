@@ -41,7 +41,7 @@ body{
    SPLASH SCREEN
 ========================= */
 
-#menuAwal{
+    #menuAwal{
     position:fixed;
     top:0;
     left:0;
@@ -53,8 +53,8 @@ body{
     justify-content:center;
     align-items:center;
 
-    background:linear-gradient(135deg,#1976d2,#42a5f5);
-    color:#fff;
+    background:#ffffff;
+    color:#222;
 
     z-index:99999;
     transition:.5s;
@@ -77,39 +77,47 @@ body{
 #menuAwal h1{
     margin:0;
     font-size:42px;
-    color:#fff;
+    color:#1976d2;
     text-align:center;
 }
 
 #menuAwal p{
     margin-top:15px;
     font-size:20px;
-    color:#e3f2fd;
+    color:#666;
 }
 
 #btnMulai{
+
     margin-top:35px;
 
-    padding:16px 45px;
+    width:85%;
+    max-width:350px;
+    height:60px;
 
-    border:none;
+    border:1px solid #1976d2;
     border-radius:50px;
 
     background:#fff;
     color:#1976d2;
 
     font-size:22px;
-    font-weight:bold;
+    font-weight:400;
 
     cursor:pointer;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.2);
+    box-shadow:0 8px 20px rgba(25,118,210,.15);
 
-    transition:.3s;
+    transition:.25s;
 }
 
 #btnMulai:active{
-    transform:scale(.95);
+
+    transform:scale(.97);
+
+    background:#1976d2;
+    color:#fff;
+
 }
 
 #loading{
@@ -120,11 +128,11 @@ body{
 
     display:none;
 
-    border:6px solid rgba(255,255,255,.3);
-    border-top:6px solid #fff;
-    border-radius:50%;
+    border:2px solid #e3f2fd;
+    border-top:5px solid #1976d2;
+    border-radius:70%;
 
-    animation:putar 1s linear infinite;
+    animation:putar 0.8s linear infinite;
 }
 
 
