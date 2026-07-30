@@ -785,7 +785,30 @@ input:focus{
    END OF FILE
 ===================================================== */
 
+.toast-exit{
+    position:fixed;
+    left:50%;
+    bottom:35px;
+    transform:translateX(-50%) translateY(80px);
+    background:rgba(35,35,35,.95);
+    color:#fff;
+    padding:14px 22px;
+    border-radius:30px;
+    font-size:15px;
+    font-weight:500;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    opacity:0;
+    transition:.25s;
+    z-index:99999;
+    pointer-events:none;
+}
 
+.toast-exit.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
+
+    
 </style>
 
 </head>
@@ -3116,8 +3139,47 @@ function muatTulisan(){
     }
 
 }
+
+history.pushState(null, "", location.href);
+
+let tekanKeluar = 0;
+
+window.addEventListener("popstate", function () {
+
+    if (tekanKeluar === 0) {
+
+        tekanKeluar = 1;
+
+        let toast = document.getElementById("toastExit");
+
+        toast.classList.add("show");
+
+        setTimeout(function(){
+
+            toast.classList.remove("show");
+
+            tekanKeluar = 0;
+
+        },2000);
+
+        history.pushState(null,"",location.href);
+
+    } else {
+
+        window.close();
+
+        history.back();
+
+    }
+
+});
+    
 </script>
 
 
+<div id="toastExit" class="toast-exit">
+    Tekan sekali lagi untuk keluar
+</div>
+    
 </body>
 </html>
