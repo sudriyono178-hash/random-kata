@@ -978,6 +978,19 @@ onchange="importBackup(event)">
 
         </button>
 
+
+<button
+class="secondary-btn"
+style="
+background:#fff1f2;
+color:#dc2626;
+border:1px solid #fecdd3;"
+onclick="klik();resetTargetHarian()">
+
+Reset
+
+</button>
+        
     </div>
 
 </div>
@@ -1063,6 +1076,8 @@ onchange="importBackup(event)">
         font-size:14px;">
         </p>
 
+        <br>
+        
         <button
         class="action-btn"
         onclick="klik();mulaiKuis()">
@@ -3149,6 +3164,20 @@ window.addEventListener("popstate", function () {
 
 });
 
+  function resetTargetHarian(){
+
+    if(!confirm("Reset progres target harian?")){
+        return;
+    }
+
+    belajarHariIni = 0;
+
+    localStorage.setItem("belajarHariIni", belajarHariIni);
+
+    targetbelajarharian();
+
+  }  
+    
 </script>
 
 <div id="toastExit" class="toast-exit">
