@@ -3274,19 +3274,35 @@ window.addEventListener("popstate", function () {
 
 });
 
-  function resetTargetHarian(){
+function resetTargetHarian(){
 
-    if(!confirm("Reset progres target harian?")){
+    if(!confirm("Reset target belajar hari ini?")){
         return;
     }
 
-    belajarHariIni = 0;
+    targetSekarang = 0;
 
-    localStorage.setItem("belajarHariIni", belajarHariIni);
+    localStorage.setItem(
+        "targetSekarang",
+        targetSekarang
+    );
 
-    targetbelajarharian();
+    document.getElementById("targetSekarang").textContent = 0;
 
-  }  
+    // Reset progress bar
+    document.getElementById("progressBar").style.width = "0%";
+
+    // Kalau ada persentase
+    const persen = document.getElementById("persenTarget");
+    if(persen){
+        persen.textContent = "0%";
+    }
+
+    // Perbarui semua tampilan
+    updateTarget();
+
+            }
+            
     
 </script>
 
