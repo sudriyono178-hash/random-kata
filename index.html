@@ -3280,28 +3280,26 @@ function resetTargetHarian(){
         return;
     }
 
-    targetSekarang = 0;
+    // Reset data target harian
+    targetHarian.hariIni = 0;
 
+    // Simpan
     localStorage.setItem(
-        "targetSekarang",
-        targetSekarang
+        "targetHarian",
+        JSON.stringify(targetHarian)
     );
 
-    document.getElementById("targetSekarang").textContent = 0;
+    // Tutup mode edit
+    document.getElementById("targetEdit")
+    .classList.add("hidden");
 
-    // Reset progress bar
-    document.getElementById("progressBar").style.width = "0%";
+    document.getElementById("targetView")
+    .classList.remove("hidden");
 
-    // Kalau ada persentase
-    const persen = document.getElementById("persenTarget");
-    if(persen){
-        persen.textContent = "0%";
-    }
-
-    // Perbarui semua tampilan
+    // Refresh tampilan
     updateTarget();
 
-            }
+       }
             
     
 </script>
